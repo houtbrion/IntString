@@ -1,0 +1,26 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+boolToString    KEYWORD2
+strToBool       KEYWORD2
+checkBoolStr    KEYWORD2
+strToInt8       KEYWORD2
+strToUint8      KEYWORD2
+strToInt16      KEYWORD2
+strToUint16     KEYWORD2
+strToInt32      KEYWORD2
+strToUint32     KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+IntString.h LITERAL1
