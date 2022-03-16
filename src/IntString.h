@@ -1,3 +1,5 @@
+#ifndef __INT_STRING_H__
+#define __INT_STRING_H__
 #include "Arduino.h"
 #include <string.h>
 
@@ -75,3 +77,4 @@ extern bool isOctDigit(char a);
 //extern uint64_t calcHex64Val(char *target,int len);
 //extern uint64_t calcOct64Val(char *target,int len);
 //extern uint64_t calcBin64Val(char *target,int len);
+#endif /* __INT_STRING_H__ */
