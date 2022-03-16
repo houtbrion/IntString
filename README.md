@@ -13,7 +13,7 @@
 
 ESP8266やSAM(Due)での動作確認はしていません．
 
-## 整数関連機能
+## 文字列→整数変換機能
 
 ### 変換対象の文字列フォーマット
 本ライブラリで，解釈可能な数字のフォーマットは以下のとおりです．
@@ -25,22 +25,47 @@ ESP8266やSAM(Due)での動作確認はしていません．
 | 10進数 |``[+\|-][0-9]+``  |
 | 16進数 |``[+\|-]0x[0-9,a,A,b,B,c,C,d,D,e,E,f,F]+`` |
 
-上の表を見てわかる通り，記号と数字の間など全ての場所に空白が存在してはいけません．また，値を示す部分の冒頭が0で始まっていても大丈夫です．冒頭の``0``の連続は無視します．
+上の表を見てわかる通り，記号と数字の間など全ての場所に空白が存在してはいけません．また，値を示す部分の冒頭が0で始まっていても大丈夫です．冒頭の``0``の連続は無視します．このフォーマットは通常のCやC++のものとは異なります(8進数と0で始まる10進整数の両方をサポートするため)．
 
 ### 変換用関数
-
 文字列を整数に変換する関数は``intXX_t strToIntXX(String)``もしくは``intXX_t strToUintXX(String)``の形式になっており，``XX``はbit数になっています．
 
-``int8_t``は``-128``から``127``の範囲の値となります．解析対象の文字列の値がこの範囲より大きい場合は``127``を返します．値が範囲より小さい場合は``-128``を返す動作をします．なお，文字列のうち，記号を示す部分以外に不正な文字が含まれていると，その文字を``0``とみなして処理をします．
+``int8_t``は``-128``から``127``の範囲の値となります．解析対象の文字列の値がこの範囲より大きい場合は``127``を返します．値が範囲より小さい場合は``-128``を返す動作をします．なお，文字列のうち，記号を示す部分以外に不正な文字が含まれていると，``0``を返します．
 
-現状実装している関数は以下の通りです(8から32bitの符号ありなし両方)．
+現状実装している関数は以下の通りです(8から64bitの符号ありなし両方)．
 - ``int8_t   strToInt8(String str)``
 - ``uint8_t  strToUint8(String str)``
 - ``int16_t  strToInt16(String str)``
 - ``uint16_t strToUint16(String str)``
 - ``int32_t  strToInt32(String str)``
 - ``uint32_t strToUint32(String str)``
+- ``int64_t strToInt64(String str)``
+- ``uint64_t strToUint64(String str)``
 
+## 数値→文字列変換機能
+
+- ``String int32ToStr(int32_t val, uint8_t type=DEC, bool header=true)``
+- ``String uint32ToStr(uint32_t val, uint8_t type=DEC, bool header=true)``
+- ``String int8ToStr(int8_t val, uint8_t type=DEC, bool header=true)``
+- ``String uint8ToStr(uint8_t val, uint8_t type=DEC, bool header=true)``
+- ``tring int16ToStr(int16_t val, uint8_t type=DEC, bool header=true)``
+- ``String uint16ToStr(uint16_t val, uint8_t type=DEC, bool header=true)``
+- ``String int64ToStr(int64_t val, uint8_t type=DEC, bool header=true)``
+- ``String uint64ToStr(uint64_t val, uint8_t type=DEC, bool header=true)``
+
+第2引数``type``の値で以下のフォーマットのうちの1つの出力形式を取ります．
+| 引数``type``の値 | フォーマット(正規表現で記載) |
+|---|---|
+| BIN |``[+\|-]0b[0\|1]+``|
+| OCT |``[+\|-]0o[0-7]+`` |
+| DEC |``[+\|-][0-9]+``   |
+| HEX |``[+\|-]0x[0-9,a,A,b,B,c,C,d,D,e,E,f,F]+`` |
+
+第3引数``header``は真偽値を取り，``+``，``-``や``0x``などを出力に含めるか否かを切り替えます．
+
+## 数値関係機能
+Arduino標準ライブラリでは，16進数，10進数を判定する機能はありますが，8進数を判定する機能はないのでそれを用意しています．
+- ``bool isOctDigit(char a)``
 
 ## 真偽値関連機能
 
@@ -69,5 +94,4 @@ ESP8266やSAM(Due)での動作確認はしていません．
 
 この関数が``true``を返す場合のみ，引数``buff``は``true``や``false``を示す文字列になっています．
 
-## 将来課題
-- 整数で64bit(``int64_t``や``uint64_t``)を取り扱う機能
+

@@ -1,6 +1,7 @@
 
 #define DEBUG
 #include <IntString.h>
+#include <Int64String.h>
 
 #define ARRAY_SIZE_INT8   24
 #define ARRAY_SIZE_UINT8  24
@@ -8,6 +9,7 @@
 #define ARRAY_SIZE_UINT16 24
 #define ARRAY_SIZE_INT32  24
 #define ARRAY_SIZE_UINT32 24
+
 #define ARRAY_SIZE_BOOL   10
 
 String strInt8[]   = { "+0127", "+0128", "+127", "127",
@@ -52,48 +54,115 @@ String strBool[]   = { "True", "true", "truE", "TRUE", "false", "False", "faLse"
 void setup() {
   Serial.begin(9600);
   delay(5000);
+  uint32_t tmp=0;
 
   Serial.println("============= int8_t (min:-128, max:127) ==========");
   for (int i=0;i<ARRAY_SIZE_INT8;i++) {
     int8_t result=strToInt8(strInt8[i]);
     Serial.print("string = ");Serial.print(strInt8[i]);
     Serial.print(" , result = ");Serial.println(String(result));
+    Serial.print("   DEC string = ");Serial.println(int8ToStr(result,DEC,true));
+    Serial.print("   HEX string = ");Serial.println(int8ToStr(result,HEX,true));
+    Serial.print("   OCT string = ");Serial.println(int8ToStr(result,OCT,true));
+    Serial.print("   BIN string = ");Serial.println(int8ToStr(result,BIN,true));
   }
+  tmp=strToInt8("0");
+  Serial.print("string = ");Serial.print("0");
+  Serial.print(" , tmp = ");Serial.println(String(tmp));
+  Serial.print("   DEC tmp = ");Serial.println(int8ToStr(tmp,DEC,true));
+  Serial.print("   HEX tmp = ");Serial.println(int8ToStr(tmp,HEX,true));
+  Serial.print("   OCT tmp = ");Serial.println(int8ToStr(tmp,OCT,true));
+  Serial.print("   BIN tmp = ");Serial.println(int8ToStr(tmp,BIN,true));
   Serial.println("");
   Serial.println("============= uint8_t (min:0, max:255) ==========");
-  for (int i=0;i<ARRAY_SIZE_INT8;i++) {
+  for (int i=0;i<ARRAY_SIZE_UINT8;i++) {
     uint8_t result=strToUint8(strUint8[i]);
     Serial.print("string = ");Serial.print(strUint8[i]);
     Serial.print(" , result = ");Serial.println(String(result));
+    Serial.print("   DEC string = ");Serial.println(uint8ToStr(result,DEC,true));
+    Serial.print("   HEX string = ");Serial.println(uint8ToStr(result,HEX,true));
+    Serial.print("   OCT string = ");Serial.println(uint8ToStr(result,OCT,true));
+    Serial.print("   BIN string = ");Serial.println(uint8ToStr(result,BIN,true));
   }
+  tmp=strToUint8("0");
+  Serial.print("string = ");Serial.print("0");
+  Serial.print(" , tmp = ");Serial.println(String(tmp));
+  Serial.print("   DEC tmp = ");Serial.println(uint8ToStr(tmp,DEC,true));
+  Serial.print("   HEX tmp = ");Serial.println(uint8ToStr(tmp,HEX,true));
+  Serial.print("   OCT tmp = ");Serial.println(uint8ToStr(tmp,OCT,true));
+  Serial.print("   BIN tmp = ");Serial.println(uint8ToStr(tmp,BIN,true));
   Serial.println("");
   Serial.println("============= int16_t (min:-32768, max:32767) ==========");
-  for (int i=0;i<ARRAY_SIZE_INT8;i++) {
+  for (int i=0;i<ARRAY_SIZE_INT16;i++) {
     int16_t result=strToInt16(strInt16[i]);
     Serial.print("string = ");Serial.print(strInt16[i]);
     Serial.print(" , result = ");Serial.println(String(result));
+    Serial.print("   DEC string = ");Serial.println(int16ToStr(result,DEC,true));
+    Serial.print("   HEX string = ");Serial.println(int16ToStr(result,HEX,true));
+    Serial.print("   OCT string = ");Serial.println(int16ToStr(result,OCT,true));
+    Serial.print("   BIN string = ");Serial.println(int16ToStr(result,BIN,true));
   }
+  tmp=strToInt16("0");
+  Serial.print("string = ");Serial.print("0");
+  Serial.print(" , tmp = ");Serial.println(String(tmp));
+  Serial.print("   DEC tmp = ");Serial.println(int16ToStr(tmp,DEC,true));
+  Serial.print("   HEX tmp = ");Serial.println(int16ToStr(tmp,HEX,true));
+  Serial.print("   OCT tmp = ");Serial.println(int16ToStr(tmp,OCT,true));
+  Serial.print("   BIN tmp = ");Serial.println(int16ToStr(tmp,BIN,true));
   Serial.println("");
   Serial.println("============= uint16_t (min:0, max:65535) ==========");
-  for (int i=0;i<ARRAY_SIZE_INT8;i++) {
+  for (int i=0;i<ARRAY_SIZE_UINT16;i++) {
     uint16_t result=strToUint16(strUint16[i]);
     Serial.print("string = ");Serial.print(strUint16[i]);
     Serial.print(" , result = ");Serial.println(String(result));
+    Serial.print("   DEC string = ");Serial.println(uint16ToStr(result,DEC,true));
+    Serial.print("   HEX string = ");Serial.println(uint16ToStr(result,HEX,true));
+    Serial.print("   OCT string = ");Serial.println(uint16ToStr(result,OCT,true));
+    Serial.print("   BIN string = ");Serial.println(uint16ToStr(result,BIN,true));
   }
+  tmp=strToUint16("0");
+  Serial.print("string = ");Serial.print("0");
+  Serial.print(" , tmp = ");Serial.println(String(tmp));
+  Serial.print("   DEC tmp = ");Serial.println(uint16ToStr(tmp,DEC,true));
+  Serial.print("   HEX tmp = ");Serial.println(uint16ToStr(tmp,HEX,true));
+  Serial.print("   OCT tmp = ");Serial.println(uint16ToStr(tmp,OCT,true));
+  Serial.print("   BIN tmp = ");Serial.println(uint16ToStr(tmp,BIN,true));
   Serial.println("");
   Serial.println("============= int32_t (min:-2147483648, max:2147483647) ==========");
-  for (int i=0;i<ARRAY_SIZE_INT8;i++) {
+  for (int i=0;i<ARRAY_SIZE_INT32;i++) {
     int32_t result=strToInt32(strInt32[i]);
     Serial.print("string = ");Serial.print(strInt32[i]);
     Serial.print(" , result = ");Serial.println(String(result));
+    Serial.print("   DEC string = ");Serial.println(int32ToStr(result,DEC,true));
+    Serial.print("   HEX string = ");Serial.println(int32ToStr(result,HEX,true));
+    Serial.print("   OCT string = ");Serial.println(int32ToStr(result,OCT,true));
+    Serial.print("   BIN string = ");Serial.println(int32ToStr(result,BIN,true));
   }
+  tmp=strToInt32("0");
+  Serial.print("string = ");Serial.print("0");
+  Serial.print(" , tmp = ");Serial.println(String(tmp));
+  Serial.print("   DEC tmp = ");Serial.println(int32ToStr(tmp,DEC,true));
+  Serial.print("   HEX tmp = ");Serial.println(int32ToStr(tmp,HEX,true));
+  Serial.print("   OCT tmp = ");Serial.println(int32ToStr(tmp,OCT,true));
+  Serial.print("   BIN tmp = ");Serial.println(int32ToStr(tmp,BIN,true));
   Serial.println("");
   Serial.println("============= uint32_t (min:0, max:4294967295) ==========");
-  for (int i=0;i<ARRAY_SIZE_INT8;i++) {
+  for (int i=0;i<ARRAY_SIZE_UINT32;i++) {
     uint32_t result=strToUint32(strUint32[i]);
     Serial.print("string = ");Serial.print(strUint32[i]);
     Serial.print(" , result = ");Serial.println(String(result));
+    Serial.print("   DEC string = ");Serial.println(uint32ToStr(result,DEC,true));
+    Serial.print("   HEX string = ");Serial.println(uint32ToStr(result,HEX,true));
+    Serial.print("   OCT string = ");Serial.println(uint32ToStr(result,OCT,true));
+    Serial.print("   BIN string = ");Serial.println(uint32ToStr(result,BIN,true));
   }
+  tmp=strToUint32("0");
+  Serial.print("string = ");Serial.print("0");
+  Serial.print(" , tmp = ");Serial.println(String(tmp));
+  Serial.print("   DEC tmp = ");Serial.println(uint32ToStr(tmp,DEC,true));
+  Serial.print("   HEX tmp = ");Serial.println(uint32ToStr(tmp,HEX,true));
+  Serial.print("   OCT tmp = ");Serial.println(uint32ToStr(tmp,OCT,true));
+  Serial.print("   BIN tmp = ");Serial.println(uint32ToStr(tmp,BIN,true));
   Serial.println("");
   Serial.println("============= bool (true, false) ==========");
   for (int i=0;i<ARRAY_SIZE_BOOL;i++) {

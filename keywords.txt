@@ -5,7 +5,6 @@
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-
 boolToString    KEYWORD2
 strToBool       KEYWORD2
 checkBoolStr    KEYWORD2
@@ -15,12 +14,45 @@ strToInt16      KEYWORD2
 strToUint16     KEYWORD2
 strToInt32      KEYWORD2
 strToUint32     KEYWORD2
+strToInt64      KEYWORD2
+strToUint64     KEYWORD2
+int32ToStr      KEYWORD2
+uint32ToStr     KEYWORD2
+int8ToStr       KEYWORD2
+uint8ToStr      KEYWORD2
+int16ToStr      KEYWORD2
+uint16ToStr     KEYWORD2
+int64ToStr      KEYWORD2
+uint64ToStr     KEYWORD2
+isOctDigit      KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
 #######################################
+IntString.h         KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
 #######################################
-IntString.h LITERAL1
+CONV_ERROR_FORMAT   LITERAL1
+CONV_SUCCESS        LITERAL1
+CONV_DATA_DEC       LITERAL1
+CONV_DATA_HEX       LITERAL1
+CONV_DATA_BIN       LITERAL1
+CONV_DATA_OCT       LITERAL1
+UPPER_LIMIT_INT8    LITERAL1
+LOWER_LIMIT_INT8    LITERAL1
+UPPER_LIMIT_UINT8   LITERAL1
+LOWER_LIMIT_UINT8   LITERAL1
+UPPER_LIMIT_INT16   LITERAL1
+LOWER_LIMIT_INT16   LITERAL1
+UPPER_LIMIT_UINT16  LITERAL1
+LOWER_LIMIT_UINT16  LITERAL1
+UPPER_LIMIT_INT32   LITERAL1
+LOWER_LIMIT_INT32   LITERAL1
+UPPER_LIMIT_UINT32  LITERAL1
+LOWER_LIMIT_UINT32  LITERAL1
+UPPER_LIMIT_INT64   LITERAL1
+LOWER_LIMIT_INT64   LITERAL1
+UPPER_LIMIT_UINT64  LITERAL1
+LOWER_LIMIT_UINT64  LITERAL1
