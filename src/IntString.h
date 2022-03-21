@@ -72,9 +72,18 @@ extern String uint64ToStr(uint64_t val, uint8_t type=DEC, bool header=true);
 
 
 extern bool isOctDigit(char a);
-//extern int64_t  calcOctVal(char *str,int length);
-//extern uint64_t calcDec64Val(char *target,int len);
-//extern uint64_t calcHex64Val(char *target,int len);
-//extern uint64_t calcOct64Val(char *target,int len);
-//extern uint64_t calcBin64Val(char *target,int len);
+
+extern int64_t  calcOctVal(char *str,int length);
+extern uint64_t calcDec64Val(char *target,int len);
+extern uint64_t calcHex64Val(char *target,int len);
+extern uint64_t calcOct64Val(char *target,int len);
+extern uint64_t calcBin64Val(char *target,int len);
+
+
+#define DECIMAL_POINT_PERIOD 0
+#define DECIMAL_POINT_COMMA  1
+
+extern int checkDecimalPoint(String str, uint8_t type=DECIMAL_POINT_PERIOD);
+extern float floatToStr(String str, uint8_t type=DECIMAL_POINT_PERIOD);
+
 #endif /* __INT_STRING_H__ */

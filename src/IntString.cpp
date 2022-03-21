@@ -896,3 +896,86 @@ String int64ToStr(int64_t val, uint8_t type, bool header) {
   rst=rst+work;
   return rst;
 }
+
+/*
+ * 小数点のチェック
+ * int checkDecimalPoint(String str, uint8_t type)
+ *
+ * 返り値 - 正:小数点の位置    0:点はなし    負:フォーマットエラー
+ *
+ */
+
+int checkDecimalPoint(String str, uint8_t type) {
+  int first, last;
+  if (type==DECIMAL_POINT_PERIOD) {
+    first=str.indexOf('.');
+    last=str.lastIndexOf('.');
+  } else if (type==DECIMAL_POINT_COMMA) {
+    first=str.indexOf(',');
+    last=str.lastIndexOf(',');
+  } else {
+    return -1;
+  }
+  if (first == 0) return -1;
+  if (first < 0) return 0;
+  if (first == last) return first;
+  return -1;
+}
+
+float floatToStr(String str, uint8_t type) {
+  int intStartPos=0;
+  bool minus=false;
+  int len=str.length();
+  const char *work=str.c_str();
+  char *charArray=(char*)work;
+
+  if (charArray[0]=='-') {
+    intStartPos=1;
+    minus=true;
+  }
+  if (charArray[0]=='+') {
+    intStartPos=1;
+  }
+
+  char decPointChar;
+  switch(type) {
+    case DECIMAL_POINT_PERIOD : decPointChar='.';break;
+    case DECIMAL_POINT_COMMA  : decPointChar=',';break;
+    default: return 0;
+  }
+  bool error=false;
+  bool header=true;
+  for (int i=intStartPos; i< len; i++) {
+    if ((!isDigit(charArray[i])) && (decPointChar!=charArray[i])) error=true;
+    if ((charArray[i]!='0') && (header)) header=false;
+    if ((charArray[i]=='0') && (header)) intStartPos++;
+  }
+  if ((error) || (intStartPos==len)) return 0;
+  int decStartPos=-1;
+  int decEndPos=-1;
+  int intEndPos=-1;
+  int decPoint=checkDecimalPoint(str, type);
+  if (decPoint < 0) return 0;
+  if (decPoint==len) return 0;
+  if (decPoint==0) {
+    intEndPos=len;
+  } else {
+    intEndPos=decPoint;
+    decStartPos=decPoint+1;
+    decEndPos=len;
+    if (decStartPos >= decEndPos) return 0;
+  }
+  uint64_t intVal=calcDec64Val( charArray + intStartPos , intEndPos - intStartPos );
+  uint64_t decVal=0;
+  if (decStartPos!=-1) decVal=calcDec64Val( charArray+decStartPos, decEndPos - decStartPos);
+  if (intVal>UPPER_LIMIT_INT32) intVal=UPPER_LIMIT_INT32;
+  float result=(float) decVal;
+  for (int i=0; i< ( decEndPos - decStartPos) ; i++) {
+    result=result/10;
+  }
+  result=result+(float) intVal;
+  if (minus) {
+    result=result*(-1);
+  }
+  return result;
+}
