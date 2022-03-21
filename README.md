@@ -94,6 +94,7 @@ Arduino標準ライブラリでは，16進数，10進数を判定する機能は
 - ``int checkDecimalPoint(String str, uint8_t type=DECIMAL_POINT_PERIOD)``
 小数点の有無，数，位置に問題がないか否かを判定する関数で，国により小数点が異なるため，第2引数でそれを指定．
 なお，第2引数の意味は以下の通り．
+
 |``type``の値 | 意味 |
 |---|---|
 |``DECIMAL_POINT_PERIOD``| 小数点は「``.``」|
