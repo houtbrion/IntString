@@ -48,7 +48,7 @@ ESP8266やSAM(Due)での動作確認はしていません．
 - ``String uint32ToStr(uint32_t val, uint8_t type=DEC, bool header=true)``
 - ``String int8ToStr(int8_t val, uint8_t type=DEC, bool header=true)``
 - ``String uint8ToStr(uint8_t val, uint8_t type=DEC, bool header=true)``
-- ``tring int16ToStr(int16_t val, uint8_t type=DEC, bool header=true)``
+- ``String int16ToStr(int16_t val, uint8_t type=DEC, bool header=true)``
 - ``String uint16ToStr(uint16_t val, uint8_t type=DEC, bool header=true)``
 - ``String int64ToStr(int64_t val, uint8_t type=DEC, bool header=true)``
 - ``String uint64ToStr(uint64_t val, uint8_t type=DEC, bool header=true)``
